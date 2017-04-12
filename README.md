@@ -1,2 +1,2 @@
 # healthpassport
-DC Blockchain Hackathon - Healthpassport team articfacts repost. 
+DC Blockchain Hackathon - Healthpassport team articfacts repo.
