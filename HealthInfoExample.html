@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body bgcolor="#E6E6FA">
+
+	<div>
+        <h1>Provider Health Portal - Traditional System</h1>
+    </div>
+
+    <div ng-app="myApp" ng-controller="myCtrl" >
+        <div class="col-md-4">
+            <h2>Patient Information</h2>
+            <img src="healthpassport.jpg" alt="health passport" width="600" height="200"> 
+			  <p>
+                <button ng-click="count = count + 1">Complete Visit</button>
+				<p>Visits completed for Patient to date : {{ count }}</p>
+
+            </p>
+            <p>
+			 <h2>FIHR Integrations - JSON</h2>
+				<pre id="default-spacing">{{ {
+  "resourceType": "AllergyIntolerance",
+  "id": "medication",
+  "text": {
+    "fhir_comments": [
+      "   the date that this entry was recorded   "
+    ],
+    "status": "generated",
+    "div": "<div><p><b>Generated Narrative with Details</b></p><p><b>id</b>: medication</p><p><b>recordedDate</b>: 01/03/2010</p><p><b>recorder</b>: <a>Practitioner/13</a></p><p><b>patient</b>: <a>Patient/example</a></p><p><b>substance</b>: ALLERGENIC EXTRACT, PENICILLIN <span>(Details : {RxNorm code '314422' = '??', given as 'ALLERGENIC EXTRACT, PENICILLIN'})</span></p><p><b>status</b>: unconfirmed</p><p><b>criticality</b>: CRITH</p><p><b>category</b>: medication</p><h3>Reactions</h3><table><tr><td>-</td><td><b>Manifestation</b></td></tr><tr><td>*</td><td>Hives <span>(Details : {SNOMED CT code '247472004' = '247472004', given as 'Hives'})</span></td></tr></table></div>"
+  },
+  "recordedDate": "2010-03-01",
+  "recorder": {
+    "fhir_comments": [
+      "   who made the record / last updated it   "
+    ],
+    "reference": "Practitioner/13"
+  },
+  "patient": {
+    "fhir_comments": [
+      "   the patient that actually has the risk of adverse reaction   "
+    ],
+    "reference": "Patient/example"
+  },
+  "substance": {
+    "fhir_comments": [
+      "   subtance, coded from RxNorm   "
+    ],
+    "coding": [
+      {
+        "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "314422",
+        "display": "ALLERGENIC EXTRACT, PENICILLIN"
+      }
+    ]
+  },
+  "status": "unconfirmed",
+  "criticality": "CRITH",
+  "category": "medication",
+  "reaction": [
+    {
+      "manifestation": [
+        {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "247472004",
+              "display": "Hives"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+} | json }}</pre>
+
+					<AllergyIntolerance xmlns="http://hl7.org/fhir">
+					  <id value="medication"/>
+					  
+					  <!--    the date that this entry was recorded    -->  
+					  <text><status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: medication</p><p><b>recordedDate</b>: 01/03/2010</p><p><b>recorder</b>: <a>Practitioner/13</a></p><p><b>patient</b>: <a>Patient/example</a></p><p><b>substance</b>: ALLERGENIC EXTRACT, PENICILLIN <span>(Details : {RxNorm code '314422' = '??', given as 'ALLERGENIC EXTRACT, PENICILLIN'})</span></p><p><b>status</b>: unconfirmed</p><p><b>criticality</b>: CRITH</p><p><b>category</b>: medication</p><h3>Reactions</h3><table><tr><td>-</td><td><b>Manifestation</b></td></tr><tr><td>*</td><td>Hives <span>(Details : {SNOMED CT code '247472004' = '247472004', given as 'Hives'})</span></td></tr></table></div></text><recordedDate value="2010-03-01"/>
+					  
+					  <!--    who made the record / last updated it    -->
+					  <recorder>
+						<reference value="Practitioner/13"/>
+					  </recorder>
+					  
+					  <!--    the patient that actually has the risk of adverse reaction    -->
+					  <patient>
+						<reference value="Patient/example"/>
+					  </patient>
+
+					  <!--    subtance, coded from RxNorm    -->
+					  <substance>
+						<coding>
+						  <system value="http://www.nlm.nih.gov/research/umls/rxnorm"/>
+						  <code value="314422"/>
+						  <display value="ALLERGENIC EXTRACT, PENICILLIN"/>
+						</coding>
+					  </substance>
+					 
+					  <status value="unconfirmed"/>
+					  <criticality value="CRITH"/> 
+					  <category value="medication"/>
+					  
+					  <reaction> 
+						<manifestation>
+						  <coding>
+							<system value="http://snomed.info/sct"/>
+							<code value="247472004"/>
+							<display value="Hives"/>
+						  </coding>
+						</manifestation>
+					  </reaction>
+					</AllergyIntolerance>
+				</textarea>
+            </p>
+          
+        </div>
+    </div>
+	<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope) {
+		$scope.count = 0;
+	});
+	</script> 
+</body>
+</html>
+
